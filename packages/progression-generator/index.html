@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="ChordLibrary">
+<head>
+
+    <link rel="stylesheet" href="css/vendor/minimal.base.css">
+    <link rel="stylesheet" href="css/vendor/minimal.utils.css">
+    <link rel="stylesheet" href="css/vendor/minimal.buttons.css">
+    <link rel="stylesheet" href="css/vendor/minimal.tables.css">
+    <link rel="stylesheet" href="css/master.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chord Progression Generator</title>
+
+    <script src="js/vendor/angular.min.js"></script>
+
+</head>
+<body data-ng-controller="MainController">
+
+
+    <h1>Progression Generator</h1>
+
+    <div class="panel">
+        <h2>Configuration</h2>
+        <div class="row">
+            <div class="col">
+                <div class="panel">
+                    <h3>Root</h3>
+                    <select ng-model="selectedChord" class="container">
+                        <option ng-repeat="chord in chords" value="{{chord}}">{{ chord }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col">
+                <div class="panel">
+                    <h3>Type</h3>
+                    <select ng-model="selectedType" class="container">
+                        <option value="major" selected>Major</option>
+                        <option value="minor">Minor</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col">
+                <div class="panel">
+                    <h3>Progression Size</h3>
+                    <input type="number" min="2" ng-model="chordQty" class="container">
+                </div>
+            </div>
+        </div>
+        <!--
+            TODO: 
+            Add initial Root chord support 
+            <div class="panel">
+            <input type="checkbox" id="initial" ng-model="initialFixed"><label for="initial">Fix initial to Root?</label>
+        </div> -->
+    </div>
+
+    <div class="panel text-right">
+        <button class="primary" ng-click="generateProgression()">Generate</button>
+    </div>
+
+    <div class="panel" ng-show="progression.length">
+        <h3>
+            Result
+        </h3>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">
+                        Root: {{ selectedChord }} | 
+                        Generated Progression: <span ng-repeat="chrd in progression">{{ chrd.chord }}
+                            <span ng-if="(chrd.id + 1) != progression.length">-</span>
+                        </span>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Number
+                    </th>
+                    <th>
+                        Chord
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="chrd in progression">
+                    <td>
+                        {{ $index + 1 }}
+                    </td>
+                    <td>
+                        {{ chrd.chord }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+
+    <script src="js/app.js"></script>
+    <!-- <script src="js/main.js"></script> -->
+
+</body>
+</html>

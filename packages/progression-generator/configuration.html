@@ -1,0 +1,32 @@
+<h2>Configuration</h2>
+<div class="row">
+    <div class="col">
+        <div class="panel">
+            <h3>Root</h3>
+            <select ng-model="selectedChord" class="container">
+                <option ng-repeat="chord in chords" value="{{chord}}">{{ chord }}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col">
+        <div class="panel">
+            <h3>Type</h3>
+            <select ng-model="selectedType" class="container">
+                <option value="major" selected>Major</option>
+                <option value="minor">Minor</option>
+            </select>
+        </div>
+    </div>
+    <div class="col">
+        <div class="panel">
+            <h3>Progression Size</h3>
+            <input type="number" min="2" ng-model="chordQty" class="container">
+        </div>
+    </div>
+</div>
+<!--
+    TODO: 
+    Add initial Root chord support 
+    <div class="panel">
+    <input type="checkbox" id="initial" ng-model="initialFixed"><label for="initial">Fix initial to Root?</label>
+</div> -->
